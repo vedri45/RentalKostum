@@ -31,7 +31,7 @@
 
 <div class="sosmed">
     <ul>
-        @foreach (App\Socmed::get() as $row)
+        {{-- @foreach (App\Socmed::get() as $row)
         @php
             if($row->name == 'facebook'){
                 $bg = 'bg-primary';
@@ -46,7 +46,7 @@
                 <i class="fab fa-{{$row->name}} {{$bg}}"></i>
             </a>
         </li>
-        @endforeach
+        @endforeach --}}
         <li>
             <a href="http://wa.me/{{setting('wa_number')}}?text={{setting('wa_text')}}">
                 <i class="fab fa-whatsapp bg-success"></i>

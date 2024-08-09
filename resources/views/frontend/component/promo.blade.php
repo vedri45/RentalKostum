@@ -8,7 +8,7 @@
                     <p class="text-red pt-3">Jangan sampai ketinggalan promo-promo menarik dari kami</p>
                 </div>
                 <div class="mosh-service-slides owl-carousel">
-                    @foreach (App\Promo::get() as $row)
+                    {{-- @foreach (App\Promo::get() as $row)
                     <a href="{{route('index.menu',[$row->menu->slug,$row->slug])}}" class="promo-card">
                         <div class="card">
                             <img src="{{asset($row->images)}}" class="card-img-top" alt="...">
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </a>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>

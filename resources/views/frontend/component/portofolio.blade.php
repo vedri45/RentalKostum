@@ -12,16 +12,16 @@
         </div>
 
         <div class="mosh-projects-menu">
-            <div class="text-center portfolio-menu">
+            {{-- <div class="text-center portfolio-menu">
                 <p class="active" data-filter="*">All</p>
                 @foreach (App\Category::get() as $row)
                 <p data-filter=".{{$row->slug}}">{{title_case($row->name)}}</p>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
 
         <div class="mosh-portfolio">
-            @foreach (App\Portofolio::orderBy('created_at','desc')->get() as $row)
+            {{-- @foreach (App\Portofolio::orderBy('created_at','desc')->get() as $row)
             <!-- Single gallery Item Start -->
             <div class="single_gallery_item {{$row->category->slug}}">
                 @php
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
 
         </div>
     </section>

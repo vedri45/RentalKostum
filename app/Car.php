@@ -20,4 +20,9 @@ class Car extends Model
     {
         return $this->belongsTo('App\Manufacture');
     }
+
+    public function images()
+    {
+        return $this->hasMany('App\CarImage');
+    }
 }

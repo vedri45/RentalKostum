@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="bg-gradient-danger">
+<body class="bg-primary">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-4">

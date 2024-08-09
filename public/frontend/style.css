@@ -250,7 +250,7 @@ img {
     font-size: 24px;
     right: 30px;
     width: 40px;
-    background: #ec4444;
+    background: #4e73df;
     color: #fff;
     text-align: center;
     height: 40px;
@@ -360,7 +360,7 @@ img {
     top: 0;
     padding: 0 15px;
     height: 100px;
-    background-color: transparent;
+    background-color: #4e73df;
     -webkit-transition-duration: 700ms;
     transition-duration: 700ms;
 }
@@ -449,7 +449,7 @@ img {
 /* Sticky CSS */
 
 .header_area.sticky {
-    background-color: #ec4444;
+    background-color: #4e73df;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     height: 80px;
     position: fixed;

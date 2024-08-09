@@ -1,6 +1,6 @@
 <!-- SLIDESHOW -->
-<section class="welcome_area clearfix section_padding_100_0" id="home" style="background-image: url({{asset('frontend/img/bg/welcome-bg.png')}})">
-    <div class="hero-slides owl-carousel">
+<section class="welcome_area clearfix section_padding_100_0" id="home" style="/*background-image: url({{asset('frontend/img/bg/welcome-bg.jpg')}})*/">
+    {{-- <div class="hero-slides owl-carousel">
         @foreach (App\Slideshow::orderBy('created_at','desc')->get() as $row)
         <!-- Single Hero Slides -->
         <div class="single-hero-slide">
@@ -9,6 +9,6 @@
             </div>
         </div>
         @endforeach
-    </div>
+    </div> --}}
 </section>
 <!-- SLIDESHOW END -->
