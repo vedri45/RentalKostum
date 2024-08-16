@@ -14,6 +14,7 @@ use SEOMeta;
 use App\Setting;
 use App\Car;
 use App\CarImage;
+use App\Customer;
 use App\Menu;
 use App\Promo;
 use App\Portofolio;
@@ -27,6 +28,7 @@ class IndexController extends Controller
         $this->setting = new Setting();
         $this->cars = new Car();
         $this->images = new CarImage();
+        $this->customer = new Customer();
     }
 
     public function index(){
@@ -38,6 +40,25 @@ class IndexController extends Controller
         OpenGraph::addProperty('type', 'pages');
         OpenGraph::addImage(asset('frontend/img/brand/digsa-color.png'));
         return view('frontend.layouts', compact('images'));
+    }
+
+    public function contact() {
+        return view('frontend.contact.index');
+    }
+
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $request = $request->merge(['slug'=>$request->name]);
+            $this->customer->create($request->all());
+            DB::commit();
+            return redirect()->route('index.contact')->with('success-message','Terima kasih telah menghubungi kami');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error-message',$e->getMessage());
+        }
+
     }
 
     public function menu($slug_menu,$slug_detail=null){

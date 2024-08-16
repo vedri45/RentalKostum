@@ -9,8 +9,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//home
 Route::get('/', 'IndexController@index')->name('index.index');
+
+//contact
+Route::get('/contact', 'IndexController@index')->name('index.contact');
+Route::post('/contact/store', 'IndexController@store')->name('index.store');
+
+//admin
 Route::get('/admin', 'LoginController@showLoginForm')->name('login');
+
+//login
 Route::post('login', 'LoginController@login')->name('proceed-login');
 
 Route::middleware(['auth'])->group(function () {

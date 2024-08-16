@@ -48,8 +48,13 @@
 
         {{-- @include('frontend.component.contact') --}}
 
+    @elseif (request()->route()->getName() == 'index.contact')
+        @include('frontend.component.slideshow')
+        @include('backend.component.success')
+        @include('frontend.contact.index')
+
     @else
-        @include('frontend.component.breadcrumb')
+        {{-- @include('frontend.component.breadcrumb') --}}
 
     @endif
 
