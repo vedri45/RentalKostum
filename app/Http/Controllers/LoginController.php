@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Car;
 use App\Customer;
 use App\Transaction;
+use App\Setting;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,7 @@ class LoginController extends Controller
         $this->car = new Car();
         $this->customer = new Customer();
         $this->transaction = new Transaction();
+        $this->setting = new Setting();
     }
 
     public function username()
@@ -31,7 +33,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('backend.component.login');
+        return view('backend.component.login', [
+            'nama_toko' => $this->setting('nama-toko'),
+        ]);
     }
 
     public function dashboard(){
@@ -73,5 +77,10 @@ class LoginController extends Controller
 
         return view('backend.dashboard.index',compact(['car','customer','transaction','chartjs']));
     }
-
+    
+    private function setting($slug)
+    {
+        $setting = Setting::where('slug', $slug)->first();
+        return $setting ? $setting->description : null;
+    }
 }

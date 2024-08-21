@@ -30,13 +30,13 @@
 
                         <div class="text-center">
                             <img src="{{asset('backend/img/logo.png')}}" width="100px">
-                            <h1 class="h4 text-gray-900 mb-4">
-                                SIRM V.1.0<br>
-                                <small class="text-muted h6">
-                                    Sistem Informasi Rental Mobil
-                                    <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center>
+                            <!-- <h1 class="h4 text-gray-900 mb-4">
+                                SIRM V.1.0 --> <br>
+                                <p class="text-muted h6">
+                                    Sistem Informasi {{ $nama_toko }}
+                                    <!-- <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center> -->
                                     
-                                </small>
+                                </p>
 
                             </h1>
 
