@@ -74,6 +74,15 @@
                               <input type="text" name="color" value="{{$data->color}}" class="form-control border-dark-50" required="">
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select name="status" class="form-control border-dark-50" required="">
+                                    <option value="tersedia" {{ $data->status == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
+                                    <option value="tidak_tersedia" {{ $data->status == 'tidak_tersedia' ? 'selected' : '' }}>Tidak Tersedia</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                 <div class="row">

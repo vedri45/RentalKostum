@@ -27,16 +27,18 @@
         </div>
         <div class="row">
             @foreach($images as $image)
-                <div class="col-lg-4 my-3">
-                    <div class="card">
-                        <img src="{{ asset($image->image) }}" class="card-img-top" alt="Car Image">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $image->car->name }}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <button type="button" class="btn btn-primary">Sewa</button>
+                @if($image->car->status != "tidak_tersedia")
+                    <div class="col-lg-4 my-3">
+                        <div class="card">
+                            <img src="{{ asset($image->image) }}" class="card-img-top" alt="Car Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $image->car->name }}</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <button type="button" class="btn btn-primary">Sewa</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>
