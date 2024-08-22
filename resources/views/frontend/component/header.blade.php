@@ -8,7 +8,7 @@
                     <nav class="navbar h-100 navbar-expand-lg align-items-center">
                         <!-- Logo -->
                         {{-- <a class="navbar-brand" href="{{route('index.index')}}"><img src="{{asset('frontend/img/brand/white-name.png')}}" alt="Digsa.id" width="100px" height="100px"></a> --}}
-                        <a class="navbar-brand" href="{{route('index.index')}}"><span style="color: white"><i class="fa fa-solid fa-car"></i></span></a>
+                        <a class="navbar-brand" href="{{route('index.index')}}"><img src="{{ asset('backend/img/tsukiyo-cosrent-transparent.png') }}" alt="logo" width="80px" height="80px"/></a>
 
                         <!-- Menu Area -->
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>

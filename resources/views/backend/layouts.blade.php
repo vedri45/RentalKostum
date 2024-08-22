@@ -37,6 +37,9 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}" type="text/javascript"></script>
 
+    <!-- AutoNumeric -->
+    <script src="{{asset('backend/vendor/autonumeric/autoNumeric.min.js')}}" type="text/javascript"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="{{asset('backend/js/sb-admin-2.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('backend/js/jquery-datatables.min.js')}}" type="text/javascript"></script>

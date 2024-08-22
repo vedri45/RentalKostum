@@ -26,7 +26,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                          <label>Merk</label>
+                          <label>Kategori</label>
                             <select name="manufacture_id" class="form-control select2">
                                 @foreach (App\Manufacture::orderBy('name','asc')->get() as $row)
                                 <option value="{{$row->id}}">{{title_case($row->name)}}</option>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col">
                         <div class="form-group">
                           <label>Nomer Polisi</label>
@@ -48,7 +48,7 @@
                           <input type="text" name="year" id="" class="form-control border-dark-50" required="">
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -64,10 +64,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="form-group">
                           <label>Warna</label>
                           <input type="text" name="color" id="" class="form-control border-dark-50" required="">
+                        </div>
+                    </div>-->
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="status" class="form-control border-dark-50" required="">
+                                <option value="tersedia">Tersedia</option>
+                                <option value="tidak_tersedia">Tidak Tersedia</option>
+                            </select>
                         </div>
                     </div>
                 </div>

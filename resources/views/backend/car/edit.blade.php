@@ -30,7 +30,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                              <label>Merk</label>
+                              <label>Kategori</label>
                                 <select name="manufacture_id" class="form-control select2">
                                     @foreach (App\Manufacture::orderBy('name','asc')->get() as $row)
                                     <option value="{{$row->id}}" {{$data->manufacture_id == $row->id ? 'selected':'' }}>{{title_case($row->name)}}</option>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                               <label>Nomer Polisi</label>
@@ -52,28 +52,29 @@
                               <input type="text" name="year" value="{{$data->year}}" class="form-control border-dark-50" required="">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                              <label>Sewa Perhari</label>
-                              <input type="text" name="price" value="{{$data->price}}" class="form-control border-dark-50" required="">
+                                <label>Sewa Perhari</label>
+                                <input id="price" type="text" name="price" value="{{ $data->price }}" class="form-control border-dark-50" required="">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                              <label>Denda Perhari</label>
-                              <input type="text" name="penalty" value="{{$data->penalty}}" class="form-control border-dark-50" required="">
+                                <label>Denda Perhari</label>
+                                <input id="penalty" type="text" name="penalty" value="{{ $data->penalty }}" class="form-control border-dark-50" required="">
                             </div>
                         </div>
                     </div>
+                                        
                     <div class="row">
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="form-group">
                               <label>Warna</label>
                               <input type="text" name="color" value="{{$data->color}}" class="form-control border-dark-50" required="">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col">
                             <div class="form-group">
                                 <label>Status</label>
@@ -154,6 +155,36 @@
         showCancel: false,
         dropZoneEnabled: false,
         allowedFileExtensions: ['jpg', 'png','jpeg'],
+    });
+
+     function cleanNumericFields() {
+        // Get AutoNumeric instances
+        var price = new AutoNumeric('#price');
+        var penalty = new AutoNumeric('#penalty');
+
+        // Remove the digit group separator (.) and update the fields
+        $('#price').val(price.getNumber().toString().replace(/\./g, ''));
+        $('#penalty').val(penalty.getNumber().toString().replace(/\./g, ''));
+    }
+
+    // Initialize AutoNumeric fields
+    new AutoNumeric('#price', {
+        digitGroupSeparator: ',',
+        decimalCharacter: '.',
+        decimalPlaces: 0,
+        minimumValue: 0
+    });
+
+    new AutoNumeric('#penalty', {
+        digitGroupSeparator: ',',
+        decimalCharacter: '.',
+        decimalPlaces: 0,
+        minimumValue: 0
+    });
+
+    // Clean the numeric fields before form submission
+    $('form').on('submit', function() {
+        cleanNumericFields();
     });
     // })
 </script>

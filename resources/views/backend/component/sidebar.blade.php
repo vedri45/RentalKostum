@@ -28,12 +28,12 @@
     <li class="nav-item">
         <a class="nav-link {{is_active('car.index') ? '':is_active('manufacture.index') ? '':'collapsed'}}" href="#" data-toggle="collapse" data-target="#car" aria-expanded="true" aria-controls="car">
             <i class="fas fa-fw fa-car"></i>
-            <span>Data Mobil</span>
+            <span>Data Kostum</span>
         </a>
         <div id="car" class="collapse {{is_active('car.index') || is_active('manufacture.index')  ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {{active('car.index')}}" href="{{route('car.index')}}">Mobil</a>
-            <a class="collapse-item {{active('manufacture.index')}}" href="{{route('manufacture.index')}}">Merk</a>
+            <a class="collapse-item {{active('car.index')}}" href="{{route('car.index')}}">Kostum</a>
+            <a class="collapse-item {{active('manufacture.index')}}" href="{{route('manufacture.index')}}">Kategori</a>
             </div>
         </div>
     </li>

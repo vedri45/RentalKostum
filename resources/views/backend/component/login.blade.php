@@ -29,7 +29,7 @@
                         @include('backend.component.error')
 
                         <div class="text-center">
-                            <img src="{{asset('backend/img/logo.png')}}" width="100px">
+                            <img src="{{asset('backend/img/tsukiyo-cosrent.jpg')}}" width="100px">
                             <!-- <h1 class="h4 text-gray-900 mb-4">
                                 SIRM V.1.0 --> <br>
                                 <p class="text-muted h6">

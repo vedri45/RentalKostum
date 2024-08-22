@@ -33,7 +33,8 @@
                             <img src="{{ asset($image->image) }}" class="card-img-top" alt="Car Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $image->car->name }}</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $image->car->manufacture->name }}</h6>
+                                <p class="card-text">Rp. {{ number_format($image->car->price, 0, ',', '.') }}</p>
                                 <button type="button" class="btn btn-primary">Sewa</button>
                             </div>
                         </div>

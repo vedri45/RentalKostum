@@ -12,8 +12,8 @@
                     <tr>
                         <th>#</th>
                         <th>Nama</th>
-                        <th>Merk</th>
-                        <th>Tahun</th>
+                        <th>Kategori</th>
+                        <!-- <th>Tahun</th> -->
                         <th>Harga Sewa</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -52,7 +52,7 @@ $(document).ready(function () {
             // {data: 'code', name: 'code',width:"5%", orderable : false},
             {data: 'name', name: 'name',width:"5%", orderable : false},
             {data: 'manufacture', name: 'manufacture',width:"5%", orderable : false},
-            {data: 'year', name: 'year',width:"5%", orderable : false},
+            // {data: 'year', name: 'year',width:"5%", orderable : false},
             {data: 'price', name: 'price',width:"5%", orderable : false},
             {data: 'status', name: 'status',width:"5%", orderable : true},
             {data: 'action', name: 'action',width:"5%", orderable : false}

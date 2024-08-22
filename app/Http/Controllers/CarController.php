@@ -53,10 +53,10 @@ class CarController extends Controller
                 return $data->year;
             })
             ->addColumn('price', function ($data) {
-                return number_format($data->price,0,',','.');
+                return 'Rp. ' . number_format($data->price, 0, ',', '.');
             })
             ->addColumn('penalty', function ($data) {
-                return number_format($data->penalty,0,',','.');
+                return 'Rp. ' . number_format($data->penalty, 0, ',', '.');
             })
             ->addColumn('status', function ($data) {
                 return $data->status == 'tersedia' ? '<span class="badge badge-success">'.$data->status.'</span>':'<span class="badge badge-secondary">'.$data->status.'</span>';
