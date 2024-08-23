@@ -16,8 +16,8 @@ class Manufacture extends Model
     protected $fillable = ['name','slug'];
     public $incrementing = false;
 
-    public function cars()
+    public function costume()
     {
-        return $this->hasMany(Car::class, 'manufacture_id');
+        return $this->hasMany(Costume::class, 'manufacture_id');
     }
 }

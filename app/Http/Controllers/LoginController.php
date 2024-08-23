@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Car;
+use App\Costume;
 use App\Customer;
 use App\Transaction;
 use App\Setting;
@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->car = new Car();
+        $this->costume = new Costume();
         $this->customer = new Customer();
         $this->transaction = new Transaction();
         $this->setting = new Setting();
@@ -39,7 +39,7 @@ class LoginController extends Controller
     }
 
     public function dashboard(){
-        $car = $this->car;
+        $costume = $this->costume;
         $customer = $this->customer;
         $transaction  = $this->transaction;
         $transaction_data = [];
@@ -57,14 +57,14 @@ class LoginController extends Controller
             [
                 "label" => "Transaksi",
                 'backgroundColor' => "rgba(78, 115, 223, 0.05)",
-                'borderColor' => "#e74a3b",
+                'borderColor' => "#4e73df",
                 "pointHoverRadius" => "3",
                 "pointHitRadius"=> "10",
                 "pointBorderWidth"=> "2",
-                "pointBorderColor" => "#e74a3b",
-                "pointBackgroundColor" => "#e74a3b",
-                "pointHoverBackgroundColor" => "#e74a3b",
-                "pointHoverBorderColor" => "#e74a3b",
+                "pointBorderColor" => "#4e73df",
+                "pointBackgroundColor" => "#4e73df",
+                "pointHoverBackgroundColor" => "#4e73df",
+                "pointHoverBorderColor" => "#4e73df",
                 'data' => $transaction_data,
                 // 'data' => [1,2,3,4,5,6,7,8,9,10,11,12]
             ]
@@ -75,7 +75,7 @@ class LoginController extends Controller
              }
          }");
 
-        return view('backend.dashboard.index',compact(['car','customer','transaction','chartjs']));
+        return view('backend.dashboard.index',compact(['costume','customer','transaction','chartjs']));
     }
     
     private function setting($slug)

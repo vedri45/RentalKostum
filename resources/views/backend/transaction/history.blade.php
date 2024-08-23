@@ -16,7 +16,7 @@
                             <th>Date Sewa</th>
                             <th>Date Kembali</th>
                             <th>Customer</th>
-                            <th>Mobil</th>
+                            <th>Kostum</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -58,7 +58,7 @@ $(document).ready(function () {
             {data: 'rent_date', name: 'rent_date',width:"5%", orderable : true},
             {data: 'back_date', name: 'back_date',width:"5%", orderable : true},
             {data: 'customer', name: 'customer',width:"15%", orderable : true},
-            {data: 'car', name: 'car',width:"5%", orderable : true},
+            {data: 'costume', name: 'costume',width:"5%", orderable : true},
             {data: 'status', name: 'status',width:"5%", orderable : true},
             {data: 'action', name: 'action',width:"5%", orderable : false}
          ]

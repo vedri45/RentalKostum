@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Setting;
-use App\Car;
-use App\CarImage;
+use App\Costume;
+use App\CostumeImage;
 use App\Customer;
 use App\CustomerImage;
 
@@ -16,16 +16,16 @@ class RentController extends Controller
     public function __construct()
     {
         $this->setting = new Setting();
-        $this->car = new Car();
-        $this->image = new CarImage();
+        $this->costume = new Costume();
+        $this->image = new CostumeImage();
         $this->customer = new Customer();
         $this->customerImage = new CustomerImage();
     }
 
     public function index($id)
     {
-        $data = $this->car->find($id);
-        $image = $this->image->where('car_id', $id)->first();
+        $data = $this->costume->find($id);
+        $image = $this->image->where('costume_id', $id)->first();
         return view('frontend.layouts', compact('data', 'image'));
     }
 

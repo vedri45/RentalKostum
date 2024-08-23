@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content rounded-0">
             <div class="modal-header bg-gradient-primary text-white rounded-0">
-                <h5 class="modal-title">Detail Mobil</h5>
+                <h5 class="modal-title">Detail Kostum</h5>
                 <button type="button" class="close tet-white " data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
@@ -42,15 +42,15 @@
                                 <input type="text" name="name" class="form-control" readonly="">
                             </div>
                         </div>
-                        <div class="col">
+                        {{-- <div class="col">
                             <div class="form-group">
                                 <label>No Polisi</label>
                                 <input type="text" name="license_number" class="form-control" readonly="">
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
-                        <div class="col">
+                        {{-- <div class="col">
                             <div class="form-group">
                                 <label>Warna</label>
                                 <input type="text" name="color" class="form-control" readonly="">
@@ -61,7 +61,7 @@
                                 <label>Tahun</label>
                                 <input type="text" name="year" class="form-control" readonly="">
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
                         <div class="col">

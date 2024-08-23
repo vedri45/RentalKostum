@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-left justify-content-left" href="#">
+    <a class="sidebar-brand d-flex align-items-left justify-content-left" href="{{route('index.index')}}" target="_blank">
         <div class="sidebar-brand-text">{{App\Setting::where('slug','nama-toko')->get()->first()->description}}</div>
     </a>
 
@@ -26,13 +26,13 @@
         Addons
     </div>
     <li class="nav-item">
-        <a class="nav-link {{is_active('car.index') ? '':is_active('manufacture.index') ? '':'collapsed'}}" href="#" data-toggle="collapse" data-target="#car" aria-expanded="true" aria-controls="car">
-            <i class="fas fa-fw fa-car"></i>
+        <a class="nav-link {{is_active('costume.index') ? '':is_active('manufacture.index') ? '':'collapsed'}}" href="#" data-toggle="collapse" data-target="#car" aria-expanded="true" aria-controls="car">
+            <i class="fas fa-fw fa-shopping-bag"></i>
             <span>Data Kostum</span>
         </a>
-        <div id="car" class="collapse {{is_active('car.index') || is_active('manufacture.index')  ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="car" class="collapse {{is_active('costume.index') || is_active('manufacture.index')  ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item {{active('car.index')}}" href="{{route('car.index')}}">Kostum</a>
+            <a class="collapse-item {{active('costume.index')}}" href="{{route('costume.index')}}">Kostum</a>
             <a class="collapse-item {{active('manufacture.index')}}" href="{{route('manufacture.index')}}">Kategori</a>
             </div>
         </div>

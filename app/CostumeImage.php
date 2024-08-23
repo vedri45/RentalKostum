@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Uuids;
 
-class CarImage extends Model
+class CostumeImage extends Model
 {
     use SoftDeletes;
     use Uuids;
 
-    protected $table = 'car_images';
+    protected $table = 'costume_images';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['car_id','image'];
+    protected $fillable = ['costume_id','image'];
     public $incrementing = false;
 
-    public function car()
+    public function costume()
     {
-        return $this->belongsTo('App\Car');
+        return $this->belongsTo('App\Costume');
     }
 
 }

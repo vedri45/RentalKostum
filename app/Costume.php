@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Uuids;
 
-class Car extends Model
+class Costume extends Model
 {
     use SoftDeletes;
     use Uuids;
 
-    protected $table = 'cars';
+    protected $table = 'costume';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name','manufacture_id','license_number','color','year','status','price','penalty'];
+    protected $fillable = ['name','manufacture_id','status','price','penalty'];
     public $incrementing = false;
 
     public function manufacture()
@@ -23,6 +23,6 @@ class Car extends Model
 
     public function images()
     {
-        return $this->hasMany('App\CarImage');
+        return $this->hasMany('App\CostumeImage');
     }
 }

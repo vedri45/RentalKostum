@@ -32,7 +32,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Mobil</th>
+                <th>Kostum</th>
                 <th>Tanggal Sewa</th>
                 <th>Tanggal kembali</th>
                 <th>Tanggal kembalikan</th>
@@ -44,7 +44,7 @@
         <tbody>
             <tr>
                 <td>1</td>
-                <td>{{$data->car->name}}</td>
+                <td>{{$data->costume->name}}</td>
                 <td>{{Carbon\Carbon::parse($data->rent_date)->format('d-m-Y')}}</td>
                 <td>{{Carbon\Carbon::parse($data->back_date)->format('d-m-Y')}}</td>
                 <td>{{Carbon\Carbon::parse($data->return_date)->format('d-m-Y')}}</td>

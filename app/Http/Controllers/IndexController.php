@@ -12,8 +12,8 @@ use Illuminate\Support\Str;
 use OpenGraph;
 use SEOMeta;
 use App\Setting;
-use App\Car;
-use App\CarImage;
+use App\Costume;
+use App\CostumeImage;
 use App\Customer;
 use App\Menu;
 use App\Promo;
@@ -26,16 +26,16 @@ class IndexController extends Controller
     public function __construct()
     {
         $this->setting = new Setting();
-        $this->cars = new Car();
-        $this->images = new CarImage();
+        $this->costume = new Costume();
+        $this->images = new CostumeImage();
         $this->customer = new Customer();
     }
 
     public function index(){
         // SEOMeta::setDescription($this->setting->where('slug','description')->get()->first()->description);
         // OpenGraph::setDescription($this->setting->where('slug','description')->get()->first()->description);
-        $cars = $this->cars->all();
-        $images = $this->images->with('car')->get();
+        $costume = $this->costume->all();
+        $images = $this->images->with('costume')->get();
         OpenGraph::setTitle('Digsa.id | Home');
         OpenGraph::addProperty('type', 'pages');
         OpenGraph::addImage(asset('frontend/img/brand/digsa-color.png'));

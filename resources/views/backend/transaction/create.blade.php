@@ -31,10 +31,10 @@
                 <div class="row" id="product">
                     <div class="col">
                         <div class="form-group">
-                            <label>Mobil</label>
-                            <select name="car_id" class="form-control car" required="">
-                                @foreach (App\Car::where('status','tersedia')->get() as $row)
-                                <option value="{{$row->id}}">{{title_case($row->name).' ('.$row->license_number.') ('.$row->year.')'}}</option>
+                            <label>Kostum</label>
+                            <select name="costume_id" class="form-control car" required="">
+                                @foreach (App\Costume::where('status','tersedia')->get() as $row)
+                                <option value="{{$row->id}}">{{title_case($row->name)}}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -7,7 +7,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
         </div>
         <div class="card-body">
-            <form action="{{route('car.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('costume.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col">
@@ -53,13 +53,13 @@
                     <div class="col">
                         <div class="form-group">
                           <label>Sewa Perhari</label>
-                          <input type="text" name="price" id="" class="form-control border-dark-50" required="">
+                          <input type="text" name="price" id="price" class="form-control border-dark-50" required="">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                           <label>Denda Perhari</label>
-                          <input type="text" name="penalty" id="" class="form-control border-dark-50" required="">
+                          <input type="text" name="penalty" id="penalty" class="form-control border-dark-50" required="">
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                             <label>Status</label>
                             <select name="status" class="form-control border-dark-50" required="">
                                 <option value="tersedia">Tersedia</option>
-                                <option value="tidak_tersedia">Tidak Tersedia</option>
+                                <option value="terpakai">Terpakai</option>
                             </select>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="col">
                         <div class="form-gorup">
                             <button type="submit" class="btn btn-primary  shadow-sm">Simpan</button>
-                            <a class="btn btn-light shadow-sm" href="{{route('car.index')}}">Batal</a>
+                            <a class="btn btn-light shadow-sm" href="{{route('costume.index')}}">Batal</a>
                         </div>
                     </div>
                 </div>
@@ -117,6 +117,36 @@
           showCancel: false,
           dropZoneEnabled: false,
           allowedFileExtensions: ['jpg', 'png','jpeg'],
+    });
+
+    function cleanNumericFields() {
+        // Get AutoNumeric instances
+        var price = new AutoNumeric('#price');
+        var penalty = new AutoNumeric('#penalty');
+
+        // Remove the digit group separator (.) and update the fields
+        $('#price').val(price.getNumber().toString().replace(/\./g, ''));
+        $('#penalty').val(penalty.getNumber().toString().replace(/\./g, ''));
+    }
+
+    // Initialize AutoNumeric fields
+    new AutoNumeric('#price', {
+        digitGroupSeparator: ',',
+        decimalCharacter: '.',
+        decimalPlaces: 0,
+        minimumValue: 0
+    });
+
+    new AutoNumeric('#penalty', {
+        digitGroupSeparator: ',',
+        decimalCharacter: '.',
+        decimalPlaces: 0,
+        minimumValue: 0
+    });
+
+    // Clean the numeric fields before form submission
+    $('form').on('submit', function() {
+        cleanNumericFields();
     });
 </script>
 

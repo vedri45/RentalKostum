@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Car;
+use App\Costume;
 use App\Customer;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Exports\TransactionExport;
@@ -18,7 +18,7 @@ class TransactionController extends Controller
 
     public function __construct()
     {
-        $this->car = new Car();
+        $this->costume = new Costume();
         $this->customer = new Customer();
         $this->transaction = new Transaction();
     }
@@ -56,8 +56,8 @@ class TransactionController extends Controller
             ->addColumn('customer', function ($data) {
                 return title_case($data->customer->name);
             })
-            ->addColumn('car', function ($data) {
-                return title_case($data->car->name);
+            ->addColumn('costume', function ($data) {
+                return title_case($data->costume->name);
             })
             ->addColumn('status', function ($data) {
                 return $data->status == 'proses' ? '<span class="badge badge-success">'.$data->status.'</span>':'<span class="badge badge-secondary">'.$data->status.'</span>';
@@ -85,20 +85,20 @@ class TransactionController extends Controller
                 $customer_id = $customer->id;
             }
 
-            $car = $this->car->find($request->car_id);
+            $costume = $this->costume->find($request->costume_id);
             $data_transaction = [
                 'invoice_no'=> $this->generateInvoice(date('Y-m-d')),
-                'car_id'=> $car->id,
+                'costume_id'=> $costume->id,
                 'customer_id'=> $customer_id,
                 'rent_date'=> $request->rent_date,
                 'back_date'=> $request->back_date,
-                'price'=> $car->price,
-                'amount'=> Carbon::parse($request->rent_date)->diffInDays($request->back_date) * $car->price,
+                'price'=> $costume->price,
+                'amount'=> Carbon::parse($request->rent_date)->diffInDays($request->back_date) * $costume->price,
                 'status'=> 'proses',
             ];
 
             $transaction = $this->transaction->create($data_transaction);
-            $car->update(['status'=>'terpakai']);
+            $costume->update(['status'=>'terpakai']);
             DB::commit();
             return redirect()->route('transaction.index')->with('success-message','Data telah disimpan');
             // return redirect()->route('transaction.print',$transaction->id);
@@ -156,11 +156,11 @@ class TransactionController extends Controller
         $transaction->update([
             'return_date'=>$request->return_date,
             'status'=>'selesai',
-            'penalty'=>Carbon::parse($transaction->back_date)->diffInDays($request->return_date) * $transaction->car->penalty,
-            'amount'=>Carbon::parse($transaction->back_date)->diffInDays($request->return_date) * $transaction->car->penalty + $transaction->amount
+            'penalty'=>Carbon::parse($transaction->back_date)->diffInDays($request->return_date) * $transaction->costume->penalty,
+            'amount'=>Carbon::parse($transaction->back_date)->diffInDays($request->return_date) * $transaction->costume->penalty + $transaction->amount
 
         ]);
-        $this->car->find($transaction->car_id)->update(['status'=>'tersedia']);
+        $this->costume->find($transaction->costume_id)->update(['status'=>'tersedia']);
         return redirect()->route('transaction.index')->with('success-message','Data telah disimpan');
     }
 

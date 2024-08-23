@@ -1,5 +1,5 @@
 @extends('backend.layouts')
-@section('title','Mobil')
+@section('title','Kostum')
 @section('content')
 <div class="col-lg-12">
     <div class="card mb-4">
@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-@include('backend.car.modal-show')
+@include('backend.costume.modal-show')
 @endsection
 @push('scripts')
 <script src="{{ asset('backend/js/sweet-alert.min.js') }}"></script>
@@ -46,7 +46,7 @@ $(document).ready(function () {
          },
          stateSave: true,
          dom: '<"toolbar">rtp',
-         ajax: '{!! route('car.source') !!}',
+         ajax: '{!! route('costume.source') !!}',
          columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex',width:"2%", orderable : false},
             // {data: 'code', name: 'code',width:"5%", orderable : false},
@@ -69,7 +69,7 @@ $(document).ready(function () {
                     '</div>' +
                 '</div>'+
                 '<div class="col-lg-2">'+
-                    '<a href="{{ route("car.create") }}" class="btn btn-primary btn-sm shadow-sm float-right" data-toggle="tooltip" title="Tambah Data"><i class="fas fa-plus"></i></a>'+
+                    '<a href="{{ route("costume.create") }}" class="btn btn-primary btn-sm shadow-sm float-right" data-toggle="tooltip" title="Tambah Data"><i class="fas fa-plus"></i></a>'+
                 '</div>' +
                 '</div>');
 
@@ -119,7 +119,7 @@ $(document).ready(function () {
             modal.find('input[name="manufacture"]').val(manufacture);
         });
 
-        var url_image = "{!! route('car.getImage',':id_car') !!}";
+        var url_image = "{!! route('costume.getImage',':id_car') !!}";
         url_image = url_image.replace(':id_car',button.data('id'));
         $.getJSON(url_image, function(data){
             $.each(data, function(index,value){
