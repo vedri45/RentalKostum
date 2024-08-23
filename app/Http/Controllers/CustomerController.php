@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\CustomerImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -15,6 +17,7 @@ class CustomerController extends Controller
     public function __construct()
     {
         $this->customer = new Customer();
+        $this->customerImage = new CustomerImage();
     }
 
     public function index()
@@ -67,15 +70,24 @@ class CustomerController extends Controller
     {
         DB::beginTransaction();
         try {
-            $requset = $request->merge(['slug'=>$request->name]);
-            $this->customer->create($request->all());
+            $request = $request->merge(['slug'=>$request->name]);
+            $customer = $this->customer->create($request->all());
+            foreach($request->image as $row){
+                $fileName = Str::uuid();
+                $file = $row->storeAs(
+                    'public/image/customer',$fileName.'.'.$row->extension()
+                );
+                $this->customerImage->create([
+                    'customer_id'=>$customer->id,
+                    'image'=>'storage/image/customer/'.$fileName.'.'.$row->extension()
+                ]);
+            }
             DB::commit();
             return redirect()->route('customer.index')->with('success-message','Data telah disimpan');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error-message',$e->getMessage());
         }
-
     }
 
     public function show($id)
@@ -97,6 +109,18 @@ class CustomerController extends Controller
         DB::beginTransaction();
         try {
             $request = $request->merge(['slug'=>$request->name]);
+            if($request->has('image')){
+                foreach($request->image as $row){
+                    $fileName = Str::uuid();
+                    $file = $row->storeAs(
+                        'public/image/customer',$fileName.'.'.$row->extension()
+                    );
+                    $this->customerImage->create([
+                        'customer_id'=>$id,
+                        'image'=>'storage/image/customer/'.$fileName.'.'.$row->extension()
+                    ]);
+                }
+            }
             $this->customer->find($id)->update($request->all());
             DB::commit();
             return redirect()->route('customer.index')->with('success-message','Data telah d irubah');
@@ -104,7 +128,6 @@ class CustomerController extends Controller
             DB::rollback();
             return redirect()->back()->with('error-message',$e->getMessage());
         }
-
     }
 
     public function destroy($id)
@@ -121,4 +144,11 @@ class CustomerController extends Controller
     	}
     }
 
+    public function getImage($id){
+        return $this->customerImage->where('customer_id',$id)->get();
+    }
+
+    public function destroyImage($id){
+        $this->customerImage->destroy($id);
+    }
 }

@@ -13,6 +13,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
+                          <label>Gambar</label>
+                          <input type="file" name="image[]" id="fileinput" class="form-control border-dark-50" required="" multiple>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
                           <label>NIK</label>
                           <input type="text" name="nik" id="" class="form-control border-dark-50" required="">
                         </div>
@@ -49,10 +57,10 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                           <label>Email</label>
                           <input type="email" name="email" id="" class="form-control border-dark-50" required="">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -68,4 +76,27 @@
         </div>
     </div>
 </div>
+<script>
+    $('.select2').select2({
+            dropdownParent: $('body'),
+            theme: 'bootstrap'
+    });
+
+    $('#fileinput').fileinput({
+        uploadUrl:'#',
+          browseClass: "btn btn-primary btn-block",
+          fileActionSettings:{
+            showZoom:false,
+            showUpload:false,
+            removeClass: "btn btn-danger",
+            removeIcon: "<i class='fa fa-trash'></i>"
+          },
+          showCaption: false,
+          showRemove: false,
+          showUpload: false,
+          showCancel: false,
+          dropZoneEnabled: false,
+          allowedFileExtensions: ['jpg', 'png','jpeg'],
+    });
+</script>
 @endsection

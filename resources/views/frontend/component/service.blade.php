@@ -35,7 +35,7 @@
                                 <h5 class="card-title">{{ $image->car->name }}</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ $image->car->manufacture->name }}</h6>
                                 <p class="card-text">Rp. {{ number_format($image->car->price, 0, ',', '.') }}</p>
-                                <button type="button" class="btn btn-primary">Sewa</button>
+                                <a href="{{route('rent.index', $image->car->id)}}"><button type="button" class="btn btn-primary">Sewa</button></a>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,18 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
+                            <label>Gambar Lama</label>
+                            <div id="loadImage" class="row"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Gambar</label>
+                            <input type="file" name="image[]" id="edit-file" multiple>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
                           <label>NIK</label>
                           <input type="text" name="nik" value="{{$data->nik}}" class="form-control border-dark-50" required="">
                         </div>
@@ -49,10 +61,10 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                           <label>Email</label>
                           <input type="email" name="email" value="{{$data->email}}" class="form-control border-dark-50" required="">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -68,4 +80,58 @@
         </div>
     </div>
 </div>
+<script>
+    function loadImage(){
+        $.getJSON("{{route('customer.getImage',$data->id)}}", function(data){
+            $.each(data, function(index,value){
+                var url = "{!! route('customer.destroyImage','id') !!}";
+                var image = "{!! asset('image') !!}";
+
+                url = url.replace('id',value.id);
+                image = image.replace('image',value.image);
+                $('#loadImage').append('<div class="col-md-3">'+
+                    '<div class="form-group">'+
+                        '<div class="card bg-dark text-white shadow-sm">'+
+                            '<img class="card-img" src="'+image+'" alt="">'+
+                            '<div class="card-img-overlay">'+
+                                '<a class="card-text btn btn-danger shadow-sm delete-photo" data-href="'+url+'" href="#">'+
+                                    '<i class="fa fa-times"></i>'+
+                                '</a>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>')
+            });
+        });
+    }
+
+    loadImage();
+
+    $('#loadImage').on('click','a.delete-photo',function(e){
+        e.preventDefault();
+        $.get($(this).attr('data-href'),function(){
+            $('#loadImage').empty();
+            loadImage();
+        });
+
+    });
+
+    $("#edit-file").fileinput({
+
+        uploadUrl:'#',
+        browseClass: "btn btn-primary btn-block",
+        fileActionSettings:{
+        showZoom:false,
+        showUpload:false,
+        removeClass: "btn btn-danger",
+        removeIcon: "<i class='fa fa-trash'></i>"
+        },
+        showCaption: false,
+        showRemove: false,
+        showUpload: false,
+        showCancel: false,
+        dropZoneEnabled: false,
+        allowedFileExtensions: ['jpg', 'png','jpeg'],
+    });
+</script>
 @endsection

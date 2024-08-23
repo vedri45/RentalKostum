@@ -12,6 +12,10 @@
 //home
 Route::get('/', 'IndexController@index')->name('index.index');
 
+//sewa
+Route::get('/rent/{id}', 'RentController@index')->name('rent.index');
+Route::post('/rent/{id}/store', 'RentController@store')->name('rent.store');
+
 //contact
 Route::get('/contact', 'IndexController@index')->name('index.contact');
 Route::post('/contact/store', 'IndexController@store')->name('index.store');
@@ -77,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/customer/getCustomer','CustomerController@getCustomer')->name('customer.getCustomer');
     Route::post('/admin/customer/store','CustomerController@store')->name('customer.store');
     Route::post('/admin/customer/{id}/update','CustomerController@update')->name('customer.update');
+    Route::get('/admin/customer/{id}/getImage','CustomerController@getImage')->name('customer.getImage');
+    Route::get('/admin/customer/{id}/destroyImage','CustomerController@destroyImage')->name('customer.destroyImage');
 
     //manufacture
     Route::get('/admin/manufacture','ManufactureController@index')->name('manufacture.index');

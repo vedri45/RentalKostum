@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Uuids;
 
-class Customer extends Model
+class CustomerImage extends Model
 {
     use SoftDeletes;
     use Uuids;
 
-    protected $table = 'customers';
+    protected $table = 'customer_images';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['nik','name','slug','sex','address','phone_number'];
+    protected $fillable = ['customer_id','image'];
     public $incrementing = false;
 
-    public function images()
+    public function customer()
     {
-        return $this->hasMany('App\CustomerImage');
+        return $this->belongsTo('App\Customer');
     }
+
 }

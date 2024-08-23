@@ -16,6 +16,7 @@
     <meta name="keywords" content="{{setting('keywords')}}, @yield('keywords')">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! SEOMeta::generate() !!}
 
     {!! OpenGraph::generate() !!}
@@ -36,7 +37,10 @@
 
 <body>
 
-    @include('frontend.component.header')
+    @if (request()->route()->getName() != 'rent.index') 
+        @include('frontend.component.header')
+    @endif
+
     @if (request()->route()->getName() == 'index.index')
         {{-- @include('frontend.component.slideshow') --}}
 
@@ -52,6 +56,9 @@
         @include('frontend.component.slideshow')
         @include('backend.component.success')
         @include('frontend.contact.index')
+
+    @elseif (request()->route()->getName() == 'rent.index')
+        @include('frontend.rent.index')
 
     @else
         {{-- @include('frontend.component.breadcrumb') --}}
