@@ -11,6 +11,23 @@
             <div class="modal-body rounded-0">
                 <div class="row">
                     <div class="col">
+                        <div id="carouselId" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="gambar"></div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
                         <div class="form-group">
                             <label>NIK</label>
                             <input type="text" name="nik" class="form-control" readonly="">
@@ -31,18 +48,14 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Email</label>
                             <input type="text" name="email" class="form-control" readonly="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
+                        </div> --}}
                         <div class="form-group">
-                          <label>Jenis Kelamin</label>
-                          <input type="text" name="sex" class="form-control" readonly="">
-                        </div>
+                            <label>Jenis Kelamin</label>
+                            <input type="text" name="sex" class="form-control" readonly="">
+                          </div>
                     </div>
                 </div>
                 <div class="row">

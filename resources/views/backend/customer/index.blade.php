@@ -104,6 +104,23 @@ $(document).ready(function () {
         var phone_number = button.data('phone_number'); // Extract info from data-* attributes
         var sex = button.data('sex'); // Extract info from data-* attributes
         var nik = button.data('nik'); // Extract info from data-* attributes
+
+        var url_image = "{!! route('customer.getImage',':id_car') !!}";
+        url_image = url_image.replace(':id_car',button.data('id'));
+        $.getJSON(url_image, function(data){
+            $.each(data, function(index,value){
+                if(index == 0){
+                    var active = 'active';
+                }
+                var image = "{!! asset('image') !!}";
+                image = image.replace('image',value.image);
+                $('.gambar').append(
+                    '<div class="carousel-item '+active+'">'+
+                        '<img src="'+image+'" alt="{{asset("backend/img/logo.png")}}" class="d-block w-100">'+
+                '</div>');
+            });
+        });
+        
         var modal = $(this)
 
         modal.find('input[name="name"]').val(name);
@@ -112,6 +129,10 @@ $(document).ready(function () {
         modal.find('input[name="email"]').val(email);
         modal.find('input[name="sex"]').val(sex);
         modal.find('input[name="nik"]').val(nik);
+
+        $('#show').on('hidden.bs.modal', function (event){
+            $('.gambar').empty();
+        });
 
     });
 });

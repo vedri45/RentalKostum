@@ -1,4 +1,5 @@
 <span data-toggle="modal" data-target="#show" data-name="{{$name}}"
+    data-id="{{$id}}"
     data-nik="{{$nik}}"
     data-address="{{$address}}"
     data-sex="{{$sex}}"

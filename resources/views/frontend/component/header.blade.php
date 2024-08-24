@@ -16,7 +16,7 @@
                         <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
                             <ul class="navbar-nav animated" id="nav">
                             <li class="nav-item"><a class="nav-link {{url()->current() == route('index.index') ? 'active':''}}" href="{{route('index.index')}}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link {{url()->current() == route('index.contact') ? 'active':''}}" href="{{route('index.contact')}}">Contact</a></li>
+                            {{-- <li class="nav-item"><a class="nav-link {{url()->current() == route('index.contact') ? 'active':''}}" href="{{route('index.contact')}}">Contact</a></li> --}}
                                 {{-- @foreach (App\Menu::orderBy('order','asc')->get() as $row)
                                 <li class="nav-item {{ route('index.menu',[$row->slug,'']) == url()->current() ? 'active':''}}"><a class="nav-link" href="{{route('index.menu',[$row->slug])}}">{{title_case($row->name)}}</a></li>
                                 @endforeach --}}
