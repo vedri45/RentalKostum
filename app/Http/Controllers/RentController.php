@@ -25,6 +25,7 @@ class RentController extends Controller
     public function index($id)
     {
         $data = $this->costume->find($id);
+        $customer = $this->customer->find($id);
         $image = $this->image->where('costume_id', $id)->first();
         return view('frontend.layouts', compact('data', 'image'));
     }

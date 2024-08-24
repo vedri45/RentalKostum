@@ -2,7 +2,8 @@
     <div class="col-lg-6 mx-auto">
         <div class="card">
             <div class="card-body">
-                <form id="checkout-form" action="" action="" method="post" enctype="multipart/form-data">
+                <form id="checkout-form" action="{{route('payment.create')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div>
                         <h4>Detail Pembayaran</h4>
                     </div>
@@ -21,8 +22,10 @@
                         <p class="font-weight-bold">Total Pembayaran</p>
                         <p class="font-weight-bold">Rp. {{ number_format($image->costume->price, 0, ',', '.') }}</p>
                     </div>
+                    <!-- Hidden Inputs -->
+                    <input type="hidden" name="amount" value="{{ $image->costume->price }}">
                     <div class="">
-                        <button type="button" class="btn btn-primary w-100">Bayar</button>
+                        <button type="submit" class="btn btn-primary w-100">Bayar</button>
                     </div>
                 </form>
             </div>

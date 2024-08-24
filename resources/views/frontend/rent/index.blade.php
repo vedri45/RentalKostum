@@ -46,6 +46,25 @@
                     // Hide the current form and show the next form
                     document.getElementById('step1Form').style.display = 'none';
                     document.getElementById('step2Form').style.display = 'block';
+
+                    // Pass data from the first form to the second form
+                    const checkoutForm = document.getElementById('checkout-form');
+
+                    // Data to be passed
+                    const hiddenData = {
+                        'first_name': formData.get('name'),
+                        'phone': formData.get('phone_number'),
+                        'address': formData.get('address'),
+                    };
+
+                    // Create hidden input elements and append to the second form
+                    for (const key in hiddenData) {
+                        const hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.name = key;
+                        hiddenInput.value = hiddenData[key];
+                        checkoutForm.appendChild(hiddenInput);
+                    }
                 } else {
                     // Handle server-side validation errors
                     alert('Error saving data: ' + data.error_message);

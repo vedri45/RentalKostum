@@ -26,6 +26,9 @@ Route::get('/admin', 'LoginController@showLoginForm')->name('login');
 //login
 Route::post('login', 'LoginController@login')->name('proceed-login');
 
+//payment
+Route::post('/payment', 'PaymentController@createPayment')->name('payment.create');
+
 Route::middleware(['auth'])->group(function () {
 
     //dashboard
