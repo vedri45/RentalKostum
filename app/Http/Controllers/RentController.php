@@ -35,42 +35,44 @@ class RentController extends Controller
         DB::beginTransaction();
         try {
             // Validate the incoming request data
-            $validatedData = $request->validate([
-                'nik' => 'required|string|max:255',
-                'name' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'sex' => 'required|in:laki-laki,perempuan',
-                'phone_number' => 'required|string|max:20',
-                'image.*' => 'required|image|mimes:jpg,png,jpeg,gif|max:2048'
-            ]);
+            // $validatedData = $request->validate([
+            //     'nik' => 'required|string|max:255',
+            //     'name' => 'required|string|max:255',
+            //     'address' => 'required|string|max:255',
+            //     'sex' => 'required|in:laki-laki,perempuan',
+            //     'phone_number' => 'required|string|max:20',
+            //     'image.*' => 'required|image|mimes:jpg,png,jpeg,gif|max:2048'
+            // ]);
 
-            // Merge slug into validated data
-            $validatedData['slug'] = $validatedData['name'];
+            // // Merge slug into validated data
+            // $validatedData['slug'] = $validatedData['name'];
 
-            // Store the customer data
-            $customer = $this->customer->create($validatedData);
+            // // Store the customer data
+            // $customer = $this->customer->create($validatedData);
 
-            // Handle the image upload
-            if ($request->hasFile('image')) {
-                foreach ($request->image as $file) {
-                    $fileName = Str::uuid() . '.' . $file->extension();
-                    $file->storeAs('public/image/customer', $fileName);
+            // // Handle the image upload
+            // if ($request->hasFile('image')) {
+            //     foreach ($request->image as $file) {
+            //         $fileName = Str::uuid() . '.' . $file->extension();
+            //         $file->storeAs('public/image/customer', $fileName);
 
-                    $this->customerImage->create([
-                        'customer_id' => $customer->id,
-                        'image' => 'storage/image/customer/' . $fileName
-                    ]);
+            //         $this->customerImage->create([
+            //             'customer_id' => $customer->id,
+            //             'image' => 'storage/image/customer/' . $fileName
+            //         ]);
+            //     }
+            // }
+
+            if($request->has('nik')){
+                $customer = $this->customer->where('nik', $request->nik)->first();
+
+                if (!$customer) {
+                    return response()->json(['success' => false, 'error_message' => 'Customer not found.']);
                 }
             }
 
             DB::commit();
-            return response()->json(['success' => true]);
-
-            // Commit the transaction
-            DB::commit();
-
-            return response()->json(['success' => true]);
-
+            return response()->json(['success' => true, 'customer' => $customer]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Rollback the transaction and return validation errors
             DB::rollback();

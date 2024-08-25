@@ -7,18 +7,18 @@
 </section>
 
 <script>
-    document.getElementById('fileinput').addEventListener('change', function(event) {
-        const files = event.target.files;
-        if (files && files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('imagePreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(files[0]);
-        }
-    });
+    // document.getElementById('fileinput').addEventListener('change', function(event) {
+    //     const files = event.target.files;
+    //     if (files && files[0]) {
+    //         const reader = new FileReader();
+    //         reader.onload = function(e) {
+    //             const preview = document.getElementById('imagePreview');
+    //             preview.src = e.target.result;
+    //             preview.style.display = 'block';
+    //         };
+    //         reader.readAsDataURL(files[0]);
+    //     }
+    // });
 
     document.getElementById('nextStep').addEventListener('click', function() {
         const form = document.getElementById('data-form');
@@ -52,9 +52,10 @@
 
                     // Data to be passed
                     const hiddenData = {
-                        'first_name': formData.get('name'),
-                        'phone': formData.get('phone_number'),
-                        'address': formData.get('address'),
+                        'customer_id': data.customer.id,
+                        'first_name': data.customer.name,
+                        'phone': data.customer.phone_number,
+                        'address': data.customer.address,
                     };
 
                     // Create hidden input elements and append to the second form

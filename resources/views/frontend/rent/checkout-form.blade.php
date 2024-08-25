@@ -24,6 +24,8 @@
                     </div>
                     <!-- Hidden Inputs -->
                     <input type="hidden" name="amount" value="{{ $image->costume->price }}">
+                    <input type="hidden" name="costume_id" value="{{ $image->costume->id }}">
+                    <input type="hidden" name="name" value="{{ $image->costume->name }}">
                     <div class="">
                         <button type="submit" class="btn btn-primary w-100">Bayar</button>
                     </div>

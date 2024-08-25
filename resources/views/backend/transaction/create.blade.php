@@ -161,12 +161,12 @@ $(document).ready(function () {
                           '<input type="text" name="phone_number" id="" class="form-control border-dark-50" required="">'+
                         '</div>'+
                     '</div>'+
-                    '<div class="col">'+
-                        '<div class="form-group">'+
-                          '<label>Email</label>'+
-                          '<input type="email" name="email" id="" class="form-control border-dark-50" required="">'+
-                        '</div>'+
-                    '</div>'+
+                    // '<div class="col">'+
+                    //     '<div class="form-group">'+
+                    //       '<label>Email</label>'+
+                    //       '<input type="email" name="email" id="" class="form-control border-dark-50" required="">'+
+                    //     '</div>'+
+                    // '</div>'+
                 '</div>');
 
             $('select[name="customer_id"]').attr('disabled','disabled');

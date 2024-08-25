@@ -28,6 +28,8 @@ Route::post('login', 'LoginController@login')->name('proceed-login');
 
 //payment
 Route::post('/payment', 'PaymentController@createPayment')->name('payment.create');
+Route::get('/payment/callback', 'PaymentController@handleCallback')->name('payment.callback');
+Route::post('/payment/store', 'PaymentController@store')->name('payment.store');
 
 Route::middleware(['auth'])->group(function () {
 

@@ -10,7 +10,7 @@
                                 style="display:none; max-width: 100%; height: auto; margin-bottom: 20px;">
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Foto KTP</label>
@@ -18,7 +18,7 @@
                                     required="" multiple>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label>Nama</label>
@@ -62,7 +62,7 @@
                                     required="">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row">
                         <div class="col">
