@@ -15,11 +15,7 @@ use App\Setting;
 use App\Costume;
 use App\CostumeImage;
 use App\Customer;
-use App\Menu;
-use App\Promo;
-use App\Portofolio;
-use App\Service;
-use App\Gallery;
+use App\Manufacture;
 
 class IndexController extends Controller
 {
@@ -29,17 +25,15 @@ class IndexController extends Controller
         $this->costume = new Costume();
         $this->images = new CostumeImage();
         $this->customer = new Customer();
+        $this->manufactures = new Manufacture();
     }
 
     public function index(){
-        // SEOMeta::setDescription($this->setting->where('slug','description')->get()->first()->description);
-        // OpenGraph::setDescription($this->setting->where('slug','description')->get()->first()->description);
         $costume = $this->costume->all();
         $images = $this->images->with('costume')->get();
-        OpenGraph::setTitle('Digsa.id | Home');
-        OpenGraph::addProperty('type', 'pages');
-        OpenGraph::addImage(asset('frontend/img/brand/digsa-color.png'));
-        return view('frontend.layouts', compact('images'));
+        $manufactures = $this->manufactures->orderBy('name', 'asc')->get();
+        
+        return view('frontend.layouts', compact('images', 'manufactures'));
     }
 
     public function contact() {
@@ -58,53 +52,26 @@ class IndexController extends Controller
             DB::rollback();
             return redirect()->back()->with('error-message',$e->getMessage());
         }
-
     }
 
-    public function menu($slug_menu,$slug_detail=null){
-        $menu = $this->menu->where('slug',$slug_menu)->get();
-        if($menu->count() > 0){
-            if(!($slug_detail)){ // jika slug detail kosong
-                $model = $menu->first()->menu_type->slug;
-                $data =  $this->$model->where('menu_id',$menu->first()->id);
-                if($data->get()->count() > 0){
-                    if($model == 'pages'){
-                        // SEO
-                        SEOMeta::setDescription(strip_tags($data->get()->first()->description));
-                        OpenGraph::setDescription(strip_tags($data->get()->first()->description));
-                    }else{
-                        SEOMeta::setDescription('Digsa.id | '.title_case($menu->first()->name));
-                        OpenGraph::setDescription('Digsa.id | '.title_case($menu->first()->name));
-                    }
-                }else{
-                    SEOMeta::setDescription('Digsa.id | '.title_case($menu->first()->name));
-                    OpenGraph::setDescription('Digsa.id | '.title_case($menu->first()->name));
-                }
-                    OpenGraph::setTitle('Digsa.id | '.title_case($menu->first()->name));
-                    OpenGraph::addProperty('type', 'pages');
-                    OpenGraph::addImage(asset('frontend/img/brand/digsa-color.png'));
+    public function filter(Request $request)
+    {
+        $query = $this->images->query();
 
-                return view('frontend.'.$model.'.index',compact(['data','menu']));
-            }else{
-                $model = $menu->first()->menu_type->slug;
-                $data =  $this->$model->where('menu_id',$menu->first()->id)->where('slug',$slug_detail);
-                if ($this->$model->where('menu_id',$menu->first()->id)->where('slug',$slug_detail)->get()->count() > 0){
-                    // SEO
-                    SEOMeta::setDescription(!($data->get()->first()->description) ? strip_tags($data->get()->first()->description):'Digsa.id| Halaman '.title_case($menu->first()->name));
-                    OpenGraph::setDescription(!($data->get()->first()->description) ? strip_tags($data->get()->first()->description):'Digsa.id| Halaman '.title_case($menu->first()->name));
-                    OpenGraph::setTitle('Digsa.id | '.title_case($data->get()->first()->name));
-                    OpenGraph::addProperty('type', 'pages');
-                    OpenGraph::addImage(asset('frontend/img/brand/digsa-color.png'));
-
-                    return view('frontend.'.$model.'.show',compact(['data','menu']));
-                }else{
-                    return view('frontend.component.404');
-                }
-            }
-        }else{
-            return view('frontend.component.404');
+        if ($request->has('search')) {
+            $query->whereHas('costume', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            });
         }
+
+        if ($request->has('manufacture_id') && $request->manufacture_id) {
+            $query->whereHas('costume.manufacture', function ($query) use ($request) {
+                $query->where('id', $request->manufacture_id);
+            });
+        }
+
+        $images = $query->with('costume.manufacture')->get();
+
+        return view('frontend.partials.image_results', compact('images'));
     }
-
-
 }

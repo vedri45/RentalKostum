@@ -24,6 +24,19 @@ class ManufactureController extends Controller
 
     public function source(){
         $query= Manufacture::query();
+
+        if (request()->has('order')) {
+            $columns = ['DT_RowIndex', 'name', 'action'];
+            $order = request('order')[0];
+            $columnIndex = $order['column'];
+            $direction = $order['dir'];
+    
+            $column = $columns[$columnIndex];
+    
+            // Apply ordering
+            $query->orderBy($column, $direction);
+        }
+
         return DataTables::eloquent($query)
         ->filter(function ($query) {
             if (request()->has('search')) {

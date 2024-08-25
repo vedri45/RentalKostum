@@ -9,26 +9,24 @@
                 </div>
             </div>
 
-            {{-- @foreach (App\Service::get() as $row)
-            <!-- Single Feature Area -->
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="single-feature-area d-flex mb-100">
-                    <div class="feature-icon mr-30">
-                        <i class="fas fa-5x text-red"></i>
-                        <i class="{{$row->icon}} fa-5x text-red"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>{{title_case($row->name)}}</h4>
-                        <p>{{str_limit($row->description,70)}}</p>
-                    </div>
+            <!-- Search and Filter Form -->
+            <div class="col-lg-12 mb-4">
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <input type="text" id="search-box" class="form-control" placeholder="Search by costume name" style="width: 250px;">
+                    <select id="manufacture-select" class="form-control" style="width: 200px;">
+                        <option value="">Select Manufacture</option>
+                        @foreach ($manufactures as $data)
+                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            @endforeach --}}
         </div>
-        <div class="row">
+
+        <div class="row" id="results">
             @foreach($images as $image)
                 @if($image->costume->status != "terpakai")
-                    <div class="col-lg-4 my-3">
+                    <div class="col-lg-4 my-3" data-costume-name="{{ $image->costume->name }}" data-manufacture-id="{{ $image->costume->manufacture->id }}">
                         <div class="card">
                             <img src="{{ asset($image->image) }}" class="card-img-top" alt="Car Image">
                             <div class="card-body">
@@ -44,4 +42,29 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function filterResults() {
+            var searchQuery = document.getElementById('search-box').value;
+            var manufactureId = document.getElementById('manufacture-select').value;
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '{{ route('index.filter') }}' + '?search=' + encodeURIComponent(searchQuery) + '&manufacture_id=' + encodeURIComponent(manufactureId), true);
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    document.getElementById('results').innerHTML = xhr.responseText;
+                } else {
+                    console.error('Request failed with status: ' + xhr.status);
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Request error');
+            };
+            xhr.send();
+        }
+        
+        document.getElementById('search-box').addEventListener('keyup', filterResults);
+        document.getElementById('manufacture-select').addEventListener('change', filterResults);
+    });
+</script>
 <!-- SERVICE END -->

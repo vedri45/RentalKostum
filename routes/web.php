@@ -11,6 +11,7 @@
 */
 //home
 Route::get('/', 'IndexController@index')->name('index.index');
+Route::get('/filter', 'IndexController@filter')->name('index.filter');
 
 //sewa
 Route::get('/rent/{id}', 'RentController@index')->name('rent.index');
