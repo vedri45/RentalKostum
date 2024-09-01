@@ -7,7 +7,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
         </div>
         <div class="card-body">
-            <table class="table table-sm table-bordered" id="manufacture-table">
+            <table class="table table-sm table-bordered" id="category-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -26,7 +26,7 @@
 $(document).ready(function () {
 
     $.fn.dataTable.ext.errMode = 'throw';
-    var $table = $('#manufacture-table').DataTable({
+    var $table = $('#category-table').DataTable({
          processing: true,
          serverSide: true,
          responsive: true,
@@ -41,7 +41,7 @@ $(document).ready(function () {
             zeroRecords: 'Tidak Ada Data'
          },
          dom: '<"toolbar">rtp',
-         ajax: '{!! route('manufacture.source') !!}',
+         ajax: '{!! route('category.source') !!}',
          columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex',width:"2%", orderable : false},
             // {data: 'code', name: 'code',width:"5%", orderable : false},
@@ -50,7 +50,7 @@ $(document).ready(function () {
          ]
      });
 
-      $('#manufacture-table_wrapper > div.toolbar').html('<div class="row">' +
+      $('#category-table_wrapper > div.toolbar').html('<div class="row">' +
                 '<div class="col-lg-10">'+
                     '<div class="input-group mb-3"> ' +
                         '<input type="text" class="form-control form-control-sm border-0 bg-light" id="search-box" placeholder="Masukkan Kata Kunci"> ' +
@@ -60,7 +60,7 @@ $(document).ready(function () {
                     '</div>' +
                 '</div>'+
                 '<div class="col-lg-2">'+
-                    '<a href="{{ route("manufacture.create") }}" class="btn btn-sm btn-primary shadow-sm float-right" data-toggle="tooltip" title="Tambah Data"><i class="fas fa-plus"></i></a>'+
+                    '<a href="{{ route("category.create") }}" class="btn btn-sm btn-primary shadow-sm float-right" data-toggle="tooltip" title="Tambah Data"><i class="fas fa-plus"></i></a>'+
                 '</div>' +
                 '</div>');
 
@@ -72,7 +72,7 @@ $(document).ready(function () {
      });
 
 
-    $('#manufacture-table').on('click','a.delete-data',function(e) {
+    $('#category-table').on('click','a.delete-data',function(e) {
         e.preventDefault();
         var delete_link = $(this).attr('href');
         swal({

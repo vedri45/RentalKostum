@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Uuids;
 
-class Manufacture extends Model
+class Category extends Model
 {
     use SoftDeletes;
     use Uuids;
 
-    protected $table = 'manufactures';
+    protected $table = 'category';
     protected $dates = ['deleted_at'];
     protected $fillable = ['name','slug'];
     public $incrementing = false;
 
     public function costume()
     {
-        return $this->hasMany(Costume::class, 'manufacture_id');
+        return $this->hasMany(Costume::class, 'category_id');
     }
 }

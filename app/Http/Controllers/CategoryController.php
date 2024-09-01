@@ -2,40 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Manufacture;
+use App\Category;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
-class ManufactureController extends Controller
+class CategoryController extends Controller
 {
 
     public function __construct()
     {
-        $this->manufacture = new Manufacture();
+        $this->category = new Category();
     }
 
     public function index()
     {
-        return view('backend.manufacture.index');
+        return view('backend.category.index');
     }
 
     public function source(){
-        $query= Manufacture::query();
+        $query= Category::query();
 
-        if (request()->has('order')) {
-            $columns = ['DT_RowIndex', 'name', 'action'];
-            $order = request('order')[0];
-            $columnIndex = $order['column'];
-            $direction = $order['dir'];
-    
-            $column = $columns[$columnIndex];
-    
-            // Apply ordering
-            $query->orderBy($column, $direction);
-        }
+        $query->orderBy('name','asc');
 
         return DataTables::eloquent($query)
         ->filter(function ($query) {
@@ -49,14 +39,14 @@ class ManufactureController extends Controller
                 return title_case($data->name);
             })
             ->addIndexColumn()
-            ->addColumn('action', 'backend.manufacture.index-action')
+            ->addColumn('action', 'backend.category.index-action')
             ->rawColumns(['action'])
             ->toJson();
     }
 
     public function create()
     {
-        return view('backend.manufacture.create');
+        return view('backend.category.create');
     }
 
     public function store(Request $request)
@@ -64,9 +54,9 @@ class ManufactureController extends Controller
         DB::beginTransaction();
         try {
             $requset = $request->merge(['slug'=>$request->name]);
-            $this->manufacture->create($request->all());
+            $this->category->create($request->all());
             DB::commit();
-            return redirect()->route('manufacture.index')->with('success-message','Data telah disimpan');
+            return redirect()->route('category.index')->with('success-message','Data telah disimpan');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error-message',$e->getMessage());
@@ -76,15 +66,15 @@ class ManufactureController extends Controller
 
     public function show($id)
     {
-        $data = $this->manufacture->find($id);
+        $data = $this->category->find($id);
         return $data;
 
     }
 
     public function edit($id)
     {
-        $data = $this->manufacture->find($id);
-        return view('backend.manufacture.edit',compact('data'));
+        $data = $this->category->find($id);
+        return view('backend.category.edit',compact('data'));
 
     }
 
@@ -93,9 +83,9 @@ class ManufactureController extends Controller
         DB::beginTransaction();
         try {
             $request = $request->merge(['slug'=>$request->name]);
-            $this->manufacture->find($id)->update($request->all());
+            $this->category->find($id)->update($request->all());
             DB::commit();
-            return redirect()->route('manufacture.index')->with('success-message','Data telah d irubah');
+            return redirect()->route('category.index')->with('success-message','Data telah d irubah');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error-message',$e->getMessage());
@@ -105,20 +95,20 @@ class ManufactureController extends Controller
 
     public function destroy($id)
     {
-        $this->manufacture->destroy($id);
-        return redirect()->route('manufacture.index')->with('success-message','Data telah dihapus');
+        $this->category->destroy($id);
+        return redirect()->route('category.index')->with('success-message','Data telah dihapus');
     }
 
-    public function getManufacture(Request $request){
+    public function getCategory(Request $request){
         if ($request->has('search')) {
             $cari = $request->search;
-    		$data = $this->manufacture->where('name', 'LIKE', '%'.$cari.'%')->get();
+    		$data = $this->category->where('name', 'LIKE', '%'.$cari.'%')->get();
             return response()->json($data);
     	}
     }
 
     public function find($id){
-        return $this->manufacture->find($id);
+        return $this->category->find($id);
     }
 
 }

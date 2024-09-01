@@ -27,8 +27,8 @@
                     <div class="col">
                         <div class="form-group">
                           <label>Kategori</label>
-                            <select name="manufacture_id" class="form-control select2">
-                                @foreach (App\Manufacture::orderBy('name','asc')->get() as $row)
+                            <select name="category_id" class="form-control select2">
+                                @foreach (App\Category::orderBy('name','asc')->get() as $row)
                                 <option value="{{$row->id}}">{{title_case($row->name)}}</option>
                                 @endforeach
                             </select>

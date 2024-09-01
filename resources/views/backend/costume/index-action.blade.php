@@ -1,6 +1,6 @@
 <span data-toggle="modal" data-target="#show" data-name="{{$name}}"
     data-id="{{$id}}"
-    data-manufacture_id="{{$manufacture_id}}"
+    data-category_id="{{$category_id}}"
     data-license_number="{{$license_number}}"
     data-color="{{$color}}"
     data-year="{{$year}}"

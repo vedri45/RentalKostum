@@ -1,11 +1,11 @@
-<a href="{{route('manufacture.edit',[$id])}}"
+<a href="{{route('category.edit',[$id])}}"
     class="btn btn-success btn-sm shadow-sm"
     data-toggle="tooltip"
     data-placement="top"
     title="Edit">
     <i class="fa fa-pen"></i>
 </a>
-<a href="{{route('manufacture.destroy',[$id])}}"
+<a href="{{route('category.destroy',[$id])}}"
     class="btn btn-danger btn-sm shadow-sm delete-data"
     data-toggle="tooltip"
     data-placement="top"

@@ -26,14 +26,14 @@
         Addons
     </div>
     <li class="nav-item">
-        <a class="nav-link {{is_active('costume.index') ? '':is_active('manufacture.index') ? '':'collapsed'}}" href="#" data-toggle="collapse" data-target="#car" aria-expanded="true" aria-controls="car">
+        <a class="nav-link {{is_active('costume.index') ? '':is_active('category.index') ? '':'collapsed'}}" href="#" data-toggle="collapse" data-target="#car" aria-expanded="true" aria-controls="car">
             <i class="fas fa-fw fa-shopping-bag"></i>
             <span>Data Kostum</span>
         </a>
-        <div id="car" class="collapse {{is_active('costume.index') || is_active('manufacture.index')  ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="car" class="collapse {{is_active('costume.index') || is_active('category.index')  ? 'show':''}}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item {{active('costume.index')}}" href="{{route('costume.index')}}">Kostum</a>
-            <a class="collapse-item {{active('manufacture.index')}}" href="{{route('manufacture.index')}}">Kategori</a>
+            <a class="collapse-item {{active('category.index')}}" href="{{route('category.index')}}">Kategori</a>
             </div>
         </div>
     </li>

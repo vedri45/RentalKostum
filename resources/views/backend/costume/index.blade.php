@@ -51,7 +51,7 @@ $(document).ready(function () {
             {data: 'DT_RowIndex', name: 'DT_RowIndex',width:"2%", orderable : false},
             // {data: 'code', name: 'code',width:"5%", orderable : false},
             {data: 'name', name: 'name',width:"5%", orderable : false},
-            {data: 'manufacture', name: 'manufacture',width:"5%", orderable : false},
+            {data: 'category', name: 'category',width:"5%", orderable : false},
             // {data: 'year', name: 'year',width:"5%", orderable : false},
             {data: 'price', name: 'price',width:"5%", orderable : false},
             {data: 'status', name: 'status',width:"5%", orderable : true},
@@ -112,11 +112,11 @@ $(document).ready(function () {
         var price = button.data('price'); // Extract info from data-* attributes
         var penalty = button.data('penalty'); // Extract info from data-* attributes
 
-        var url = "{!! route('manufacture.find',':id') !!}";
-        url = url.replace(':id',button.data('manufacture_id'));
+        var url = "{!! route('category.find',':id') !!}";
+        url = url.replace(':id',button.data('category_id'));
         $.getJSON(url, function(data){
-            var manufacture = data.name;
-            modal.find('input[name="manufacture"]').val(manufacture);
+            var category = data.name;
+            modal.find('input[name="category"]').val(category);
         });
 
         var url_image = "{!! route('costume.getImage',':id_car') !!}";

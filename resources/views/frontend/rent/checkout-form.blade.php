@@ -11,7 +11,7 @@
                         <img src="{{ asset($image->image) }}" width="100px">
                         <div class="text-right">
                             <p class="card-title">{{ $image->costume->name }}</p>
-                            <p class="card-subtitle mb-2 text-body-secondary">{{ $image->costume->manufacture->name }}</p>
+                            <p class="card-subtitle mb-2 text-body-secondary">{{ $image->costume->category->name }}</p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between border-bottom">

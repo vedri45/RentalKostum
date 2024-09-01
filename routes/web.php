@@ -90,17 +90,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/customer/{id}/getImage','CustomerController@getImage')->name('customer.getImage');
     Route::get('/admin/customer/{id}/destroyImage','CustomerController@destroyImage')->name('customer.destroyImage');
 
-    //manufacture
-    Route::get('/admin/manufacture','ManufactureController@index')->name('manufacture.index');
-    Route::get('/admin/manufacture/create','ManufactureController@create')->name('manufacture.create');
-    Route::get('/admin/manufacture/source','ManufactureController@source')->name('manufacture.source');
-    Route::get('/admin/manufacture/{id}/edit','ManufactureController@edit')->name('manufacture.edit');
-    Route::get('/admin/manufacture/{id}/show','ManufactureController@show')->name('manufacture.show');
-    Route::get('/admin/manufacture/{id}/destroy','ManufactureController@destroy')->name('manufacture.destroy');
-    Route::get('/admin/manufacture/getManufacture','ManufactureController@getManufacture')->name('manufacture.getManufacture');
-    Route::post('/admin/manufacture/store','ManufactureController@store')->name('manufacture.store');
-    Route::post('/admin/manufacture/{id}/update','ManufactureController@update')->name('manufacture.update');
-    Route::get('/admin/manufacture/{id}/find','ManufactureController@find')->name('manufacture.find');
+    //category
+    Route::get('/admin/category','CategoryController@index')->name('category.index');
+    Route::get('/admin/category/create','CategoryController@create')->name('category.create');
+    Route::get('/admin/category/source','CategoryController@source')->name('category.source');
+    Route::get('/admin/category/{id}/edit','CategoryController@edit')->name('category.edit');
+    Route::get('/admin/category/{id}/show','CategoryController@show')->name('category.show');
+    Route::get('/admin/category/{id}/destroy','CategoryController@destroy')->name('category.destroy');
+    Route::get('/admin/category/getCategory','CategoryController@getCategory')->name('category.getCategory');
+    Route::post('/admin/category/store','CategoryController@store')->name('category.store');
+    Route::post('/admin/category/{id}/update','CategoryController@update')->name('category.update');
+    Route::get('/admin/category/{id}/find','CategoryController@find')->name('category.find');
 
     //transaction
     Route::get('/admin/transaction','TransactionController@index')->name('transaction.index');

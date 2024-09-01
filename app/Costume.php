@@ -13,12 +13,12 @@ class Costume extends Model
 
     protected $table = 'costume';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name','manufacture_id','status','price','penalty'];
+    protected $fillable = ['name','category_id','status','price','penalty'];
     public $incrementing = false;
 
-    public function manufacture()
+    public function category()
     {
-        return $this->belongsTo('App\Manufacture');
+        return $this->belongsTo('App\Category');
     }
 
     public function images()

@@ -28,7 +28,7 @@ class CostumeController extends Controller
 
     public function source(){
         $query= Costume::query();
-        $query->with(['manufacture']);
+        $query->with(['category']);
         return DataTables::eloquent($query)
         ->filter(function ($query) {
             if (request()->has('search')) {
@@ -40,8 +40,8 @@ class CostumeController extends Controller
             ->addColumn('name', function ($data) {
                 return str_limit($data->name,50);
             })
-            ->addColumn('manufacture', function ($data) {
-                return title_case($data->manufacture->name);
+            ->addColumn('category', function ($data) {
+                return title_case($data->category->name);
             })
             ->addColumn('license_number', function ($data) {
                 return $data->license_number;

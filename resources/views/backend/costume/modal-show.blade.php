@@ -66,8 +66,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Merk</label>
-                                <input type="text" name="manufacture" class="form-control" readonly="">
+                                <label>Kategori</label>
+                                <input type="text" name="category" class="form-control" readonly="">
                             </div>
                         </div>
                     </div>
